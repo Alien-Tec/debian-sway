@@ -23,8 +23,8 @@
 @define-color bg-selected rgba(33, 164, 223, 1);
 
 * {
-    font-family: "Source Sans Pro";
-    font-size:   15px;
+    font-family: "SF Pro Display", "JetBrainsMono Nerd Font";
+    font-size:   17px;
 }
 
 .notification-row {

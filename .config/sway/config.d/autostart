@@ -2,6 +2,11 @@
 # exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1
 
+### OSD (wob)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
 ### Notification Daemon
 exec swaync
 # exec mako
@@ -12,20 +17,16 @@ exec nm-applet --indicator
 ### Music Player Daemon
 exec mpd
 
+### Fix slow open GTK apps
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 ### Low Battery Notifier
 exec lbnrunner
-
-### Bluetooth
-exec blueman-applet
 
 ### Clipboard Manager
 exec wl-paste -t text --watch clipman store --no-persist
 
-### GTK3 Applications take a long time to start
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-     
-### Manually Mount W10 Data
-# exec sleep 3 && exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10
-# exec alacritty --class sp-term -e sudo mount /dev/nvme0n1p5 /home/agung/w10
+### Bluetooth
+# exec blueman-applet

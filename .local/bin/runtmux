@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$TMUX" ]; then
-    base_session='main'
+    base_session='terminal'
     # Create a new session if it doesn't exist
     tmux has-session -t $base_session || tmux new-session -d -s $base_session
     # Are there any clients connected already?

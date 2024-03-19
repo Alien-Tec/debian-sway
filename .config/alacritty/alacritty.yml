@@ -2,67 +2,70 @@ colors:
   name: Agstr
   primary:
     # background: "#222222"
-    # background: "#0A0E14"
-    background: "#000000"
-    foreground: "#B6BECA"
+    # background: "#080c10"
+    background: "#070707"
+    foreground: "#dadada"
   cursor:
-    text: "#070C0F"
-    cursor: "#F5F5F5"
+    text:       "#1f2329"
+    cursor:     "#b6bcc7"
+  selection:
+    text:       "#1f2329"
+    background: "#b6bcc7"
   normal:
-    black: "#1C252C"
-    red: "#E3535A"
-    green: "#57C88F"
-    yellow: "#E3BD70"
-    blue: "#5394EA"
-    magenta: "#C181EB"
-    cyan: "#6AB9E6"
-    white: "#DFE3E9"
+    black:      "#1c252c"
+    red:        "#e3535a"
+    green:      "#57c88f"
+    yellow:     "#e3bd70"
+    blue:       "#5394ea"
+    magenta:    "#c181eb"
+    cyan:       "#6ab9e6"
+    white:      "#dfe3e9"
   bright:
-    black: "#384148"
-    red: "#F46269"
-    green: "#73EDAF"
-    yellow: "#F3DD8F"
-    blue: "#68ADFF"
-    magenta: "#D99AF8"
-    cyan: "#83D1F7"
-    white: "#FAFDFF"
+    black:      "#384148"
+    red:        "#f46269"
+    green:      "#73edaf"
+    yellow:     "#f3dd8f"
+    blue:       "#68adff"
+    magenta:    "#d99af8"
+    cyan:       "#83d1f7"
+    white:      "#fafdff"
 
 env:
   TERM: xterm-256color
 
 window:
   decorations: full
-  # title: ""
+  title: "Terminal"
   padding:
     x: 4
     y: 4
   class:
     instance: Alacritty
     general: Alacritty
-  opacity: 0.85
+  opacity: 0.8
   # opacity: 1
   dimensions:
-    columns: 104
-    lines: 27
+    columns: 100
+    lines: 25
 
 font:
   normal:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Regular
 
   bold:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold
 
   italic:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Italic
 
   bold_italic:
-    family: JetBrains Mono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold Italic
 
-  size: 14
+  size: 16
 
   offset:
     x: 0
@@ -81,8 +84,8 @@ shell:
 
 cursor:
   style:
-    shape: Beam
-    blinking: On
+    shape: Block
+    blinking: Off
 
 live_config_reload: true
 draw_bold_text_with_bright_colors: true

@@ -32,7 +32,6 @@ sudo apt install -y pulseaudio alsa-utils pavucontrol volumeicon-alsa pulsemixer
 
 ### Launcher and notification daemon
 sudo apt install -y wofi sway-notification-center wob libnotify-bin suckless-tools vim
-sudo apt install -y sudo apt install
 ### Bisa juga pakai mako-notifier tapi swaync lebih better
 
 ### Clipboard manager
@@ -41,12 +40,45 @@ sudo apt install -y  clipman
 ### Redshift replacement for wayland
 sudo apt install -y wlsunset
 
-### https://github.com/jgmdev/wl-color-picker
-[ ! -d "~/.stuff/" ] && mkdir -p ~/.stuff && cd ~/.stuff
+### Screenshot stuff
+
 sudo apt install -y grim grimshot slurp imagemagick zenity wl-clipboard
+
+# Build wl-color-picker
+[ ! -d "~/.stuff/" ] && mkdir -p ~/.stuff && cd ~/.stuff
 git clone https://github.com/jgmdev/wl-color-picker
 cd wl-color-picker
 sudo make install
+
+# Build swappy
+sudo apt install -y meson ninja-build libcairo2-dev pango1.0-tools libgtk-3-dev libglib2.0-0 scdoc
+[ ! -d "~/.stuff/" ] && mkdir -p ~/.stuff && cd ~/.stuff
+git clone https://github.com/jtheoof/swappy.git
+cd swappy
+meson setup build
+ninja -C build
+sudo cp build/swappy /usr/local/bin
+cd ~/
+
+# Build nwg-look
+sudo apt install -y golang
+sudo apt install -y libglib2.0-dev
+sudo apt install -y libcairo2-dev
+sudo apt install -y libwebkit2gtk-4.0-dev
+# sudo apt install -y libcairo-gobject2 # sudah include sama yg atas?
+git clone https://github.com/nwg-piotr/nwg-look
+cd nwg-look
+make build # (take long time)
+sudo make install
+
+# Build SwayOSD (testing, failed, use wob)
+# sudo apt install -y sassc libudev-dev
+# git clone https://github.com/ErikReider/SwayOSD
+# cd SwayOSD
+# # Please note that the command below might require `--prefix /usr` on some systems
+# meson setup build
+# ninja -C build
+# meson install -C build
 
 sudo apt install -y wf-recorder
 
@@ -74,7 +106,7 @@ sudo apt install -y arc-theme
 sudo apt install -y mupdf zathura
 
 ### Image viewer
-sudo apt install -y mirage sxiv
+sudo apt install -y mirage nsxiv
 
 ### Music/media player packages
 sudo apt install -y mpc mpd ncmpcpp mpv
@@ -113,6 +145,7 @@ git clone https://github.com/hlissner/zsh-autopair.git
 
 ### Copy config
 cp -r ~/.dotfiles/.config/* ~/.config
+# of 'symlink' it
 
 cd ~/
 cp -r ~/.dotfiles/.local/bin/ ~/.local/

@@ -1,158 +1,169 @@
 {
-    "layer": "top", // Waybar at top layer
+  "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 26, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    // "width": 1920, // Waybar width
     // "gtk-layer-shell": "false",
-    // Choose the order of the modules
-    // "modules-left": ["sway/workspaces", "sway/mode", "tray", "sway/window"],
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [], 
-    // "modules-center": ["sway/window"],
-    //"modules-right": ["network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
-    "modules-right": ["tray", "custom/blank", "custom/sep" ,"cpu", "memory", "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
-    //"modules-right": ["tray", "custom/blank", "custom/sep" , "battery", "battery#bat2", "pulseaudio", "custom/layout", "clock"],
+    "modules-right": ["tray", "custom/blank", "pulseaudio", "pulseaudio#microphone", "battery", "clock"],
     "sway/mode": {
-        "format": " {}"
+      "format": " {}"
     },
-     // "sway/workspaces": {
-     //     "disable-scroll": true,
-     //     "all-outputs": true,
-     //     "warp-on-scroll": false,
-     //     "format": "{name}: {icon}",
-     //     "format-icons": {
-     //         "1": "",
-     //         "2": "",
-     //         "4": "",
-     //         "urgent": "",
-     //         //"focused": "",
-     //         "focused": "",
-     //         "default": ""
-     //     }
-     // },
     "sway/window": {
-        "max-length": 80,
-        "tooltip": false
-    },
-    "custom/layout": {
-        "tooltip": false,
-        "exec": "swaymsg -mrt subscribe '[\"input\"]' | jq -r --unbuffered \"select(.change == \\\"xkb_layout\\\") | .input | select(.type == \\\"keyboard\\\") | .xkb_active_layout_name | .[0:2]\""
+      "max-length": 50,
+      "tooltip": false
     },
     "custom/sep": {
-        "format": "⁝⁝",
+      "format": "⁝⁝",
     },
     "custom/blank": {
-        "format": " ",
+      "format": " ",
     },
     "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        } 
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      } 
     },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 8,
+      // "icon-size": 21,
+      "spacing": 12,
     },
     "clock": {
-        "timezone": "Asia/Jakarta",
-        // "format": " {:%b %d %Y %R}",
-        // "format": " {:%a, %d %b %I:%M %p}",
-        "format": " {:%a %h-%d %I:%M %p}",
-        "tooltip-format": "<span color='#D1D1D1'><big>{:%Y %B}</big></span>\n<span color='#D1D1D1'><tt><small>{calendar}</small></tt></span>",
-        //"format-alt": "{:%a %d %b w:%V %H:%M}",
-        "today-format": "<span background='#E7FE2F' color='#080811'><b><u>{}</u></b></span>",
-        "calendar-weeks-pos": "left",
-        "format-calendar": "<span><b>{}</b></span>",
-        "format-calendar-weeks": "<span color='#64CF28'><b>{}</b></span>",
-        "format-calendar-weekdays": "<span color='#54D1E1'><b>{}</b></span>",
-        "on-click": "$TERMINAL --class sp-cal -e calcurse",
-        //"on-click-right": "",
-        "interval": 10
+      "timezone": "Asia/Jakarta",
+      "format": " {:%d %b %Y (%a)  %H:%M}",
+      "tooltip-format": "<span color='#d1d1d1'><big>{:%Y %B}</big></span>\n<span color='#D1D1D1'><tt><small>{calendar}</small></tt></span>",
+      //"format-alt": "{:%a %d %b w:%V %H:%M}",
+      "today-format": "<span background='#e7fe2f' color='#080811'><b><u>{}</u></b></span>",
+      "calendar-weeks-pos": "left",
+      "format-calendar": "<span><b>{}</b></span>",
+      "format-calendar-weeks": "<span color='#64cf28'><b>{}</b></span>",
+      "format-calendar-weekdays": "<span color='#54d1e1'><b>{}</b></span>",
+      "on-click": "$TERMINAL --class sp-cal -e calcurse",
+      //"on-click-right": "",
+      "interval": 10
     },
     "cpu": {
-        "format": " {usage}%",
-        "tooltip": false
+      "format": " {usage}%",
+      "tooltip": false
     },
     "memory": {
-        // "format": "{}% "
-        "format": " {}%"
+      // "format": "{}% "
+      "format": " {}%"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+      // "thermal-zone": 2,
+      // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      // "format-critical": "{temperatureC}°C {icon}",
+      "format": "{temperatureC}°C {icon}",
+      "format-icons": ["", "", ""]
     },
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-       // "format-icons": ["", ""]
+      // "device": "acpi_video1",
+      "format": "{percent}% {icon}",
+      // "format-icons": ["", ""]
       "format-icons": [ "", "", "", "", "", "", "", "", "" ],
-      },
+    },
     "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 15,
-            "critical": 10
-        },
-        "format": "{icon} {capacity}%",
-        // "format-charging": "",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        //"format-alt": "{icon} {capacity}% {time}",
-        "format-icons": [" ", " ", " ", " ", " "]
-        // "format-icons": ["󰁹", "󰁹", "󰁹", "󰁹", "󰁹"]
+      "states": {
+        // "good": 95,
+        "warning": 15,
+        "critical": 10
+      },
+      "format": "{icon} {capacity}%",
+      // "format-charging": "",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      //"format-alt": "{icon} {capacity}% {time}",
+      "format-icons": [" ", " ", " ", " ", " "]
     },
     "battery#bat2": {
-        "bat": "BAT2"
+      "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " ",
-        "format-ethernet": "",
-        "format-linked": "",
-        // "format-disconnected": "⚠",
-        "format-disconnected": " Offline",
-        "format-alt": "{ifname} {essid} ({signalStrength}%)"
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": " ",
+      "format-ethernet": "",
+      "format-linked": "",
+      // "format-disconnected": "⚠",
+      "format-disconnected": " Offline",
+      "format-alt": "{ifname} {essid} ({signalStrength}%)"
     },
+    //"pulseaudio": {
+    //    "format": "{icon} {volume}",
+    //    // "format-alt": "{icon} {volume}",
+    //    // "format-alt-click": "click-right",
+    //    // "format-muted": "",
+    //    // "format-muted": "🔇",
+    //    "format-muted": "婢 {volume}",
+    //    "format-icons": {
+    //        "headphones": "",
+    //        "handsfree": "",
+    //        "headset": "",
+    //        "phone": "",
+    //        "portable": "",
+    //        "car": "",
+    //        "default": ["", "", ""]
+    //    },
+    //    "scroll-step": 10,
+    //    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    //    "on-click-right": "pavucontrol",
+    //    "tooltip": false
+    //},
+
     "pulseaudio": {
-        "format": "{icon} {volume}",
-        // "format-alt": "{icon} {volume}",
-        // "format-alt-click": "click-right",
-        // "format-muted": "",
-        "format-muted": "🔇",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "scroll-step": 10,
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "format": "{icon} {volume}%",
+        "format-muted": "婢 {volume}%",
+        "on-click": "changevol mute",
+        "on-scroll-up": "changevol up1",
+        "on-scroll-down": "changevol down1",
         "on-click-right": "pavucontrol",
+        "scroll-step": 5,
+        "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", "墳", ""]
+        },
         "tooltip": false
+        // "tooltip-format": "{icon} at {volume}%"
     },
+
+    "pulseaudio#microphone": {
+      "format": "{format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": " {volume}%",
+      "on-click": "changemicvol mute",
+      "on-scroll-up": "changemicvol up1",
+      "on-scroll-down": "changemicvol down1",
+      "on-click-right": "pavucontrol -t 4",
+      // open pavucontrol tab number 4 (input)
+      "scroll-step": 5,
+      "tooltip": false
+      // "tooltip-format": " at {volume}%"
+    },
+
+
     "custom/notification": {
-	"tooltip": true,
-	"format": "{icon}",
-	"format-icons": {
-	     "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
-	     "none": " ",
-	     "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
-	     "dnd-none": " "
-	},
-	"return-type": "json",
-	"exec-if": "which swaync-client",
-	"exec": "swaync-client -swb",
-	"on-click": "swaync-client -t -sw",
-	"on-click-right": "swaync-client -d -sw",
-	"escape": true
-   }
+      "tooltip": true,
+      "format": "{icon}",
+      "format-icons": {
+        "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+        "none": " ",
+        "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+        "dnd-none": " "
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+    }
 }
